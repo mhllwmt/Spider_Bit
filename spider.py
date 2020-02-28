@@ -74,5 +74,5 @@ class ScrapeBit:
             print("那么请重新开启吧，233，因为不能重新输入。。。课程名称默认爬取第一个")
 
 s = ScrapeBit()
-s.login('3120191031', 'mhllwmt821474143')
+s.login('username', 'password')
 s.infinite_loop()
