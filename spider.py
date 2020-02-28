@@ -14,7 +14,10 @@ class ScrapeBit:
         self.session = requests.Session()
         self.username = None
 
-    def login(self, username, password):
+    def login(self, username=None, password=None):
+        username = input('请输入学号:\n>>>')
+        password = input('请输入密码:\n>>>')
+
         self.username = username
 
         r = self.session.get(self.log_url).text
@@ -61,9 +64,11 @@ class ScrapeBit:
         flag = input("确定要注册这门课程嘛？Y/N\n>>>>")
         if flag == 'Y':
             while True:
+                ttimes = 0
                 while info["sum"] - info["online"] == 0:
                     time.sleep(5)
-                    print("没有课啦。。。")
+                    print(f"没有课啦。。。{ttimes}")
+                    ttimes += 1
                     info = self.course_query(name)
                 print("查询有余课。。。")
                 times = 0
@@ -76,6 +81,7 @@ class ScrapeBit:
         else:
             print("那么请重新开启吧，233，因为不能重新输入。。。课程名称默认爬取第一个")
 
-s = ScrapeBit()
-s.login('3120191031', 'mhllwmt821474143')
-s.infinite_loop()
+if __name__ == '__main__':
+    s = ScrapeBit()
+    s.login()
+    s.infinite_loop()
