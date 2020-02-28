@@ -29,6 +29,8 @@ class ScrapeBit:
     def course_query(self, name):
         name = urllib.parse.quote(name)
         data1['c0-e10'] = f'string:%25{name}%25'
+        data1['c0-e1'] = f'string:{self.username}'
+
         r = self.session.post(self.query_url, data=data1).text
         info = get_info(r)
         for key, _ in data2.items():
