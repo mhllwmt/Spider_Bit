@@ -54,8 +54,8 @@ class ScrapeBit:
         print('请输入课程名称')
         name = input('>>>')
         info = self.course_query(name)
-        name, teachers = urllib.parse.unquote(info["c0-e17"]),  urllib.parse.unquote(info["teachers"])
-        print(f'course_name:{name}\n teachers:{teachers}')
+        course_name, teachers = urllib.parse.unquote(info["c0-e17"]),  urllib.parse.unquote(info["teachers"])
+        print(f'course_name:{course_name}\n teachers:{teachers}')
         print(f'sum_number{info["sum"]} | left_number:{info["sum"] - info["online"]}')
         print("#"*50)
         flag = input("确定要注册这门课程嘛？Y/N\n>>>>")
@@ -63,6 +63,7 @@ class ScrapeBit:
             while True:
                 while info["sum"] - info["online"] == 0:
                     time.sleep(5)
+                    print("没有课啦。。。")
                     info = self.course_query(name)
                 print("查询有余课。。。")
                 times = 0
@@ -76,5 +77,5 @@ class ScrapeBit:
             print("那么请重新开启吧，233，因为不能重新输入。。。课程名称默认爬取第一个")
 
 s = ScrapeBit()
-s.login('username', 'password')
+s.login('3120191031', 'mhllwmt821474143')
 s.infinite_loop()
