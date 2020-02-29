@@ -1,9 +1,10 @@
-import requests
-from lxml import etree
-import urllib
 import time
-from tools import get_info
+import urllib
+import requests
 from config import params, headers, data1, data2
+from lxml import etree
+from tools import get_info
+
 
 class ScrapeBit:
     def __init__(self):
@@ -27,7 +28,6 @@ class ScrapeBit:
         params['password'] = password
         params['lt'] = lt
         self.session.post(self.log_url, data=params, headers=headers)
-
 
     def course_query(self, name):
         name = urllib.parse.quote(name)
@@ -57,10 +57,10 @@ class ScrapeBit:
         print('请输入课程名称')
         name = input('>>>')
         info = self.course_query(name)
-        course_name, teachers = urllib.parse.unquote(info["c0-e17"]),  urllib.parse.unquote(info["teachers"])
+        course_name, teachers = urllib.parse.unquote(info["c0-e17"]), urllib.parse.unquote(info["teachers"])
         print(f'course_name:{course_name}\n teachers:{teachers}')
         print(f'sum_number{info["sum"]} | left_number:{info["sum"] - info["online"]}')
-        print("#"*50)
+        print("#" * 50)
         flag = input("确定要注册这门课程嘛？Y/N\n>>>>")
         if flag == 'Y':
             while True:
@@ -80,6 +80,7 @@ class ScrapeBit:
                     break
         else:
             print("那么请重新开启吧，233，因为不能重新输入。。。课程名称默认爬取第一个")
+
 
 if __name__ == '__main__':
     s = ScrapeBit()

@@ -1,17 +1,19 @@
 import urllib
+
 dc_map = {
     # 'JXBMC': 'c0-e2'
-    'c0-e7': 'KKXN', # 2019
+    'c0-e7': 'KKXN',  # 2019
     'c0-e13': 'KKXN',
-    'c0-e14': 'KKXQ', # 学期
+    'c0-e14': 'KKXQ',  # 学期
     'c0-e15': 'TEACH_CLASS_ID',
-    'c0-e16': 'KCDM', # 课程ID
-    'c0-e17': 'KCZWMC', # name
+    'c0-e16': 'KCDM',  # 课程ID
+    'c0-e17': 'KCZWMC',  # name
     'teachers': 'SKJSXM',
     'locate': 'SKSJDD',
-    'sum': 'RSXD', # 总数
-    'online': 'SJSKRS', # 剩余
+    'sum': 'RSXD',  # 总数
+    'online': 'SJSKRS',  # 剩余
 }
+
 
 def get_info(sentences):
     dc = dict()
@@ -33,12 +35,10 @@ def get_info(sentences):
         if 'c0' in key:
             info[key] = f'string:{dc[val]}'
         elif key in ['sum', 'online']:
-             info[key] = int(dc[val])
+            info[key] = int(dc[val])
         else:
             info[key] = dc[val]
     return info
-
-
 
 
 if __name__ == '__main__':
